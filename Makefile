@@ -10,33 +10,41 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME_COLLEEN	= Colleen
-NAME_GRACE	= Grace
-NAME_SULLY	= Sully
+NAME		= dr_quine
+EXECS		= Colleen \
+		  Grace \
+		  Sully
 
 CC		= clang
 FLAGS		= -Wall -Werror -Wextra
 
-OBJ_DIR		= ./build/
-SRC_DIR		= ./srcs/
+SRC_FOLDER	= ./srcs/
+OBJ_FOLDER	= ./builds/
 
-SRC_FILES	= Colleen.c \
-		  Grace.c \
-		  Sully.c
-SRCS		= $(addprefix $(SRC_FOLDER), $(SRC_FILES))
-OBJS		= $(addprefix $(OBJ_DIR), $(SRCS=.c:.o))
+SRC_CREATE	= $(addsuffix .c, $(EXECS))
+SRCS		= $(addprefix $(SRC_FOLDER), $(SRC_CREATE))
+OBJS		= $(addprefix $(OBJ_FOLDER), $(SRC_CREATE:.c=.o))
 
-all: $(NAME_COLLEEN) $(NAME_GRACE) $(NAME_SULLY)
 
-$(NAME_COLLEEN): $(addprefix $(NAME_COLLEEN), .o)
-	$(CC) $(FLAGS) -o $(NAME_COLLEEN) $(addprefix $(OBJ_DIR), $<)
+all: $(NAME) $(EXECS)
 
-$(NAME_GRACE): $(addprefix $(NAME_GRACE), .o)
-	$(CC) $(FLAGS) -o $(NAME_GRACE) $(addprefix $(OBJ_DIR), $<)
+$(NAME): $(OBJ_FOLDER) $(OBJS)
 
-$(NAME_SULLY): $(addprefix $(NAME_SULLY), .o)
-	$(CC) $(FLAGS) -o $(NAME_SULLY) $(addprefix $(OBJ_DIR), $<)
+%: $(OBJ_FOLDER)%.o
+	@$(CC) $(FLAGS) -o $@ $<
 
-%.o: %.c
-	mkdir -p $(OBJ_DIR)
-	$(CC) -o $(addprefix $(OBJ_DIR), $@) -c $<
+$(OBJ_FOLDER):
+	@mkdir -p $(OBJ_FOLDER)
+
+$(OBJ_FOLDER)%.o: $(SRC_FOLDER)%.c
+	@$(CC) $(FLAGS) -c $< -o $@
+
+clean:
+	@rm -rf $(OBJ_FOLDER)
+
+fclean: clean
+	@rm -rf $(EXECS)
+	@rm -rf Grace_kid.c
+	@find . -name "S*" | grep "_" | xargs rm -rf
+
+re: fclean all
