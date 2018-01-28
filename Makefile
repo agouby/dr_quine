@@ -48,3 +48,5 @@ fclean: clean
 	@find . -name "S*" | grep "_" | xargs rm -rf
 
 re: fclean all
+
+.PHONY: all re fclean clean
