@@ -6,14 +6,14 @@
 #    By: agouby <agouby@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/12 23:34:09 by agouby            #+#    #+#              #
-#    Updated: 2018/02/09 09:03:31 by agouby           ###   ########.fr        #
+#    Updated: 2018/02/10 02:38:38 by agouby           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	dr_quine
 EXECS		=	Colleen \
 		  		Grace \
-#		 		Sully
+		 		Sully
 
 CC			= clang
 FLAGS		= -Wall -Werror -Wextra
@@ -45,7 +45,7 @@ clean:
 fclean: clean
 	@rm -rf $(EXECS)
 	@rm -rf Grace_kid.c
-	@find . -name "S*" | grep "_" | xargs rm -rf
+	@find . -name "Sully_*" | xargs rm -rf
 
 re: fclean all
 
