@@ -6,14 +6,14 @@
 #    By: agouby <agouby@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/12 23:34:09 by agouby            #+#    #+#              #
-#    Updated: 2018/02/11 09:23:45 by agouby           ###   ########.fr        #
+#    Updated: 2018/02/11 13:09:13 by agouby           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= dr_quine
 EXECS		= Colleen \
 			  Grace \
-#			  Sully
+			  Sully
 
 MACOS_V		= $(shell uname -r)
 ARCH		= $(shell uname -m)
